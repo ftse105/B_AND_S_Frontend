@@ -1,26 +1,70 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {getProfileFetch, getProductsFetch, getOrdersFetch, logoutUser} from './redux/actions';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import MainContainer from './containers/MainContainer'
+import Navbar from './components/Navbar'
+import Account from './components/Account'
+import Cart from './components/Cart'
+import ProductShowPage from './components/ProductShowPage'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  componentDidMount = () => {
+    this.props.getProfileFetch()
+    this.props.getProductsFetch()
+    this.props.getOrdersFetch()
+  }
+
+  handleLogout = (event) => {
+    event.preventDefault()
+    localStorage.removeItem("token")
+    this.props.logoutUser()
+    this.props.history.push("/login")
+  }
+
+  render() {
+    return (
+      <div>
+        <Navbar handleLogout={this.handleLogout} currentUser={this.props.currentUser} />
+        <Switch>
+          <Route exact path="/users/:id" render={(routerProps) => {
+              return <Account handleLogout={this.handleLogout} {...routerProps}/>
+            }}/>
+          <Route path="/home" render={(routerProps) => {
+							return <MainContainer products={this.props.products}{...routerProps}/>
+						}} />
+          <Route path="/signup" render={(routerProps) => {
+              return <Signup />
+            }}/>
+          <Route path="/login" render={(routerProps) => {
+              return <Login currentUser={this.props.currentUser} {...routerProps}/>
+            }}/>
+          <Route path="/cart" render={(routerProps) => {
+              return <Cart {...routerProps}/>
+            }}/>
+          <Route path="/products/:id" render={(routerProps) => {
+                return <ProductShowPage products={this.props.products}{...routerProps}/>
+              }}/>
+        </Switch>
+      </div>
+    )
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  currentUser: state.usersReducer.currentUser,
+  products: state.productsReducer.products,
+  orders: state.ordersReducer.orders
+})
+
+const mapDispatchToProps = dispatch => ({
+  getProfileFetch: () => dispatch(getProfileFetch()),
+  getProductsFetch: () => dispatch(getProductsFetch()),
+  getOrdersFetch: () => dispatch(getOrdersFetch()),
+  logoutUser: () => dispatch(logoutUser())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
