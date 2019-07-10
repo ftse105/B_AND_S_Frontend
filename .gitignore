@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -46,4 +46,3 @@ yarn-error.log*
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
->>>>>>> 1ebde7ecd29547d83a31947ca803be991ddf7c1b
