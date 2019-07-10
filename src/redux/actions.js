@@ -134,7 +134,6 @@ export const getOrdersFetch = () => {
 }
 
 export const postOrderToBackend = (obj) => {
-  console.log("this is the obj: ", obj);
   return dispatch => {
     const token = localStorage.token
     return fetch("http://localhost:3001/api/v1/orders", {
@@ -150,8 +149,29 @@ export const postOrderToBackend = (obj) => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log("this is from the database: ", data)
-      dispatch({type: "POST_ORDER", payload: obj})
+      console.log(data);
+      if (data.errors) {
+        alert(data.errors)
+      } else {
+        dispatch({type: "POST_ORDER", payload: data})
+      }
     })
+  }
+}
+
+export const deleteOrderFetch = id => {
+  return dispatch => {
+    const token = localStorage.token
+    return fetch(`http://localhost:3001/api/v1/orders/${id}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token
+      },
+    })
+    .then(data => {
+      dispatch({type: "DELETE_ORDER", payload: id})
+    },console.log("deleted"))
   }
 }

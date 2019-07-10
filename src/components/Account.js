@@ -20,8 +20,6 @@ class Account extends Component {
     switch (activeList) {
       case "myProducts":
         return <UserProducts/>
-      case "orderHistory":
-        return <OrderHistory/>
       case "uploadForm":
         return <UploadForm/>
     }
@@ -42,18 +40,6 @@ class Account extends Component {
               <br/>
               </Menu.Item>
               <br/>
-
-              <Menu.Item name="orderHistory" active={this.state.activeList === "orderHistory"} onClick={this.handleClick}>
-                <Header size="huge">Order</Header>
-                <Header size="huge">History</Header><br/>
-              </Menu.Item>
-
-
-              <Menu.Item>
-              <br/>
-              </Menu.Item>
-              <br/>
-
 
               <Menu.Item name="uploadForm" active={this.state.activeList === "uploadForm"} onClick={this.handleClick}>
                 <Header size="huge">Sell Your</Header>

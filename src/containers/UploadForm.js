@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Form } from 'semantic-ui-react'
+import { Form, Select } from 'semantic-ui-react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { postProductToBackendFetch } from '../redux/actions'
 
 class UploadForm extends Component {
+
   state = {
     name: "",
     description: "",
@@ -52,6 +53,7 @@ class UploadForm extends Component {
         price: this.state.price,
         sold: false
       })
+      console.log(this.state);
     })
   }
 
@@ -71,7 +73,14 @@ class UploadForm extends Component {
 
         <Form.Field>
           <label>Category</label>
-          <input name="category" type="text" onChange={this.textHandleChange}/>
+          <select name="category" onChange={this.textHandleChange}>
+            <option value="Athletic Shoes">Athletic Shoes</option>
+            <option value="Bags">Bags</option>
+            <option value="Coats & Jackets">Coats & Jackets</option>
+            <option value="Hats">Hats</option>
+            <option value="T-Shirts">T-Shirts</option>
+            <option value="Other Men's Accessories">Other Men's Accessories</option>
+          </select>
         </Form.Field>
 
         <Form.Field>

@@ -7,8 +7,10 @@ export default function ordersReducer(state = initialState, action) {
       case 'GET_ORDERS':
         return {...state, orders: action.payload}
       case 'POST_ORDER':
-      console.log(action.payload);
         return {...state, orders: [...state.orders, action.payload]}
+      case 'DELETE_ORDER':
+      let orderArray = state.orders.filter(order => order.id !== action.payload)
+        return {...state, orders: orderArray }
       default:
         return state;
     }

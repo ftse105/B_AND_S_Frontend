@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Item } from 'semantic-ui-react'
+import { Item, Button } from 'semantic-ui-react'
 
 class UserProductListing extends Component {
 
@@ -13,6 +13,7 @@ class UserProductListing extends Component {
             <Item.Header>{this.props.product.name}</Item.Header>
             <Item.Extra>$ {this.props.product.price}</Item.Extra>
           </Item.Content>
+
         </Item>
       </Item.Group>
     );

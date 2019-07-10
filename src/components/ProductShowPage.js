@@ -6,14 +6,10 @@ import { getOrdersFetch, postOrderToBackend } from '../redux/actions'
 class ProductShowPage extends Component {
 
   addToCart = (obj) => {
-    // console.log(obj)
-    if (!this.props.currentUser.orders.includes(obj)) {
-      this.props.postOrderToBackend(obj)
-    }
+    this.props.postOrderToBackend(obj)
   }
 
   render() {
-    console.log(this.props.currentUser);
     return (
       <div>
         {
@@ -36,12 +32,12 @@ class ProductShowPage extends Component {
                     <Header>{product.description}</Header><br/>
                     <Header></Header><br/>
                     <Header>Only ${product.price} !!!</Header>
-                    <Button onClick={() => {this.addToCart(product)}}>ADD TO CART</Button>
+                    <Button onClick={() => {this.addToCart({user_id: this.props.currentUser.id, product_id: product.id, active: false})}}>ADD TO CART</Button>
                   </Grid.Column>
 
                 </Grid.Row>
               </Grid>
-          )
+            )
           })
         }
       </div>

@@ -15,7 +15,6 @@ class MainContainer extends Component {
       category: event.target.innerText,
       filtered: true
     })
-    console.log(event.target);
   }
 
   onSearchChange = (event) =>{
