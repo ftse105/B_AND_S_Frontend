@@ -38,7 +38,7 @@ class MainContainer extends Component {
       return(product.category === this.state.category)
     })
     return (
-      <Grid celled >
+      <Grid celled>
         <Grid.Row>
 
           <Grid.Column width={3}>

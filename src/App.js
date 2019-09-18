@@ -9,6 +9,7 @@ import Navbar from './components/Navbar'
 import Account from './components/Account'
 import Cart from './components/Cart'
 import ProductShowPage from './components/ProductShowPage'
+import './App.css'
 
 
 class App extends Component {
@@ -28,6 +29,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <img className="backgorund" src="https://images.unsplash.com/photo-1553285991-4c74211f5097?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"/>
         <Navbar handleLogout={this.handleLogout} currentUser={this.props.currentUser} />
         <Switch>
           <Route exact path="/users/:id" render={(routerProps) => {

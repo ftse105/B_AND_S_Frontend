@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {userLoginFetch} from '../redux/actions';
+import { Form, Button } from 'semantic-ui-react'
 
 class Login extends Component {
   state = {
@@ -22,28 +23,18 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h1>Login</h1>
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Field>
+          <label>Username</label>
+          <input onChange={this.handleChange} name="username" value={this.state.username} placeholder='Username' />
+        </Form.Field>
+        <Form.Field>
+          <label>Password</label>
+          <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder='Password' />
+        </Form.Field>
+        <Button type='submit'>Submit</Button>
+      </Form>
 
-        <label>Username</label>
-        <input
-          name='username'
-          placeholder='Username'
-          value={this.state.username}
-          onChange={this.handleChange}
-          /><br/>
-
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          placeholder='Password'
-          value={this.state.password}
-          onChange={this.handleChange}
-          /><br/>
-
-        <input type='submit'/>
-      </form>
     )
   }
 }

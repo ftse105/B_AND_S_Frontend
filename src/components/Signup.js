@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {userPostFetch} from '../redux/actions';
+import { Form, Button } from 'semantic-ui-react'
 
 class Signup extends Component {
   state = {
@@ -22,36 +23,21 @@ class Signup extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h1>Sign Up For An Account</h1>
-
-        <label>Username</label>
-        <input
-          name='username'
-          placeholder='Username'
-          value={this.state.username}
-          onChange={this.handleChange}
-          /><br/>
-
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          placeholder='Password'
-          value={this.state.password}
-          onChange={this.handleChange}
-          /><br/>
-
+      <Form onSubmit={this.handleSubmit}>
+		    <Form.Field>
+		      <label>Username</label>
+		      <input onChange={this.handleChange} name="username" value={this.state.username} placeholder='Username' />
+		    </Form.Field>
+        <Form.Field>
           <label>Bio</label>
-          <textarea
-            name='bio'
-            placeholder='Bio'
-            value={this.state.bio}
-            onChange={this.handleChange}
-            /><br/>
-
-        <input type='submit'/>
-      </form>
+          <input onChange={this.handleChange} name="bio" value={this.state.bio} placeholder='Bio' />
+        </Form.Field>
+		    <Form.Field>
+		      <label>Password</label>
+		      <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder='Password' />
+		    </Form.Field>
+		    <Button type='submit'>Submit</Button>
+		  </Form>
     )
   }
 }

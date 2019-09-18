@@ -7,7 +7,7 @@ import Controls from './Controls'
 class Navbar extends React.Component {
 	render(){
 		return (
-        <Menu>
+			<Menu style={{margin: "0px", backgroundColor: "#eee0"}}>
             <Link to="/home">
 							<Image src="https://img.discogs.com/5W8PKs-vbee-5jQxMWbYNcemubI=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/A-6117533-1512126717-2897.jpeg.jpg" size="small"/>
 						</Link>

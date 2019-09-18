@@ -9,7 +9,7 @@ class ProductCard extends Component {
   render() {
     return (
       <Item.Group>
-        <Link to={`/products/${this.props.product.id}`}>
+        <Link style={{color: "black"}} to={`/products/${this.props.product.id}`}>
             <Item>
                 <Item.Image size="small" src={this.props.product.image_url}/>
               <Item.Content>
